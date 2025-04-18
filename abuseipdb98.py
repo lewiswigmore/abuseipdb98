@@ -121,23 +121,36 @@ Whitelisted: {"Yes" if is_whitelisted else "No"}
                             21: "Hacking"
                         }
                         category_names = [category_map.get(cat, f"Category {cat}") for cat in categories]
-                    result += f"  {report_date}: {', '.join(category_names)}\n    \"{comment}\"\n"
-            
-            if output_box:
-                output_box.delete('1.0', tk.END)
-                output_box.insert(tk.END, result)
+                    
+                    formatted_date = report_date.replace('T', ' ').split('+')[0]
+                    
+                    report_entry = f"{formatted_date}\n"
+                    report_entry += f"Category: {', '.join(category_names)}\n"
+                    report_entry += f"Comment: \"{comment}\"\n\n"
+                    result += report_entry
                 
-                # Colour the risk scores
+                if output_box:
+                    output_box.delete('1.0', tk.END)
+                    output_box.insert(tk.END, result)
+                
+                # Configure tags for risk levels and reports
                 try:
-                    score_value = int(score)
+                    # Risk level tags
                     output_box.tag_config("low_risk", foreground="green")
-                    output_box.tag_config("medium_risk", foreground="#CC7722")  # Dark orange
+                    output_box.tag_config("medium_risk", foreground="#CC7722")
                     output_box.tag_config("high_risk", foreground="red")
                     output_box.tag_config("critical_risk", foreground="red", font=("Arial", 10, "bold"))
                     
-                    # Find and tag the score line
+                    # Report section tags
+                    output_box.tag_config("report_date", foreground="gray")
+                    output_box.tag_config("report_category", foreground="#CC7722")
+                    output_box.tag_config("report_comment", foreground="black")
+                    
+                    # Find and tag the risk level line
                     text_content = output_box.get("1.0", tk.END)
                     lines = text_content.split("\n")
+                    
+                    # Tag risk level
                     for i, line in enumerate(lines):
                         if "Risk Level:" in line:
                             line_num = i + 1
@@ -150,8 +163,25 @@ Whitelisted: {"Yes" if is_whitelisted else "No"}
                             else:
                                 output_box.tag_add("low_risk", f"{line_num}.0", f"{line_num}.end")
                             break
-                except:
-                    pass
+                    
+                    # Tag report sections
+                    in_reports_section = False
+                    for i, line in enumerate(lines):
+                        line_num = i + 1
+                        
+                        if "Most Recent Reports:" in line:
+                            in_reports_section = True
+                            continue
+                            
+                        if in_reports_section and line.strip() and not line.startswith("Most Recent Reports:"):
+                            if line.strip().startswith("202"):  # Date lines start with year
+                                output_box.tag_add("report_date", f"{line_num}.0", f"{line_num}.end")
+                            elif line.strip().startswith("Category:"):
+                                output_box.tag_add("report_category", f"{line_num}.0", f"{line_num}.end")
+                            elif line.strip().startswith("Comment:"):
+                                output_box.tag_add("report_comment", f"{line_num}.0", f"{line_num}.end")
+                except Exception as e:
+                    print(f"Error applying tags: {str(e)}")  # For debugging
                 
             return True, result, score
         else:
