@@ -18,7 +18,7 @@ You will need an API key from the AbuseIP Database, available for free at [https
 
 1. Clone the repository:
    ```
-   git clone https://github.com/YOUR_USERNAME/abuseipdb-98.git
+   git clone https://github.com/lewiswigmore/abuseipdb-98.git
    cd abuseipdb-98
    ```
 
