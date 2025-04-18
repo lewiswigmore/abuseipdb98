@@ -81,21 +81,20 @@ def check_single_ip(ip_address, api_key, output_box=None, maxAgeInDays=90):
             is_whitelisted = data.get('isWhitelisted', False)
             reports = data.get('reports', [])
             recent_reports = min(len(reports), 10)  # Show 10 most recent reports
-            
-            # Format results
+              # Format results
             result = f"""
-                IP Address: {ip}
-                Abuse Confidence Score: {score}%
-                Risk Level: {risk_level}
-                Country Code: {country_code}
-                Usage Type: {usage_type}
-                ISP: {isp}
-                Domain: {domain or 'N/A'}
-                Total Reports: {total_reports}
-                Last Reported: {last_reported or 'Never'}
-                Tor Exit Node: {"Yes" if is_tor else "No"}
-                Whitelisted: {"Yes" if is_whitelisted else "No"}
-                """
+IP Address: {ip}
+Abuse Confidence Score: {score}%
+Risk Level: {risk_level}
+Country Code: {country_code}
+Usage Type: {usage_type}
+ISP: {isp}
+Domain: {domain or 'N/A'}
+Total Reports: {total_reports}
+Last Reported: {last_reported or 'Never'}
+Tor Exit Node: {"Yes" if is_tor else "No"}
+Whitelisted: {"Yes" if is_whitelisted else "No"}
+"""
             
             # Add the recent reports if available
             if recent_reports > 0:
