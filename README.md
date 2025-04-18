@@ -2,7 +2,7 @@
 
 A Windows 98 styled tool for checking IP addresses against the AbuseIPDB database. Input a CSV list of IP addresses (one per line) and receive a CSV-formatted report with abuse information, country code, ISP, and domain details for each IP checked.
 
-![Windows 98 Style](https://github.com/jdan/98.css/blob/main/docs/window.png?raw=true)
+<img src="images/window.png" alt="Windows 98 Style" width="250">
 
 ## Features
 
