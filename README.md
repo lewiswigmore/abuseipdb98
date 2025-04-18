@@ -14,7 +14,33 @@ A Windows 98 styled tool for checking IP addresses against the AbuseIPDB databas
 
 You will need an API key from the AbuseIP Database, available for free at [https://www.abuseipdb.com/account/api](https://www.abuseipdb.com/account/api).
 
-## Special thanks to:
+## Setup
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/YOUR_USERNAME/abuseipdb-98.git
+   cd abuseipdb-98
+   ```
+
+2. Install the required dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+3. Run the application:
+   ```
+   python abuseipdb98.py
+   ```
+
+## Quick Start Guide
+
+1. **Launch the application** - Run `python abuseipdb98.py`
+2. **Enter your API key** - You can get one from [AbuseIPDB](https://www.abuseipdb.com/account/api)
+3. **Single IP Check** - Enter an IP address in the "Single IP" tab and click "Check IP" 
+4. **Bulk IP Check** - Go to the "Bulk Check" tab, select a CSV file with one IP per line, choose an export location, and click "Start Check"
+5. **Create Desktop Shortcut** - For easy access, click "Create Desktop Shortcut" button
+
+## Mentions
 
 - [AbuseIPDB](https://abuseipdb.com) - For providing the API
 - [98.css](https://github.com/jdan/98.css) - For the Windows 98 design system
@@ -22,8 +48,6 @@ You will need an API key from the AbuseIP Database, available for free at [https
 - [Potatrix](https://github.com/Potatrix) - For contributions
 - [AdmiralSYN-ACKbar](https://github.com/AdmiralSYN-ACKbar) - For the original bulkcheck project
 
-## Feedback
-
-Feature requests and feedback welcome via GitHub issues.
+## Note
 
 Original project can be found at [AdmiralSYN-ACKbar/bulkcheck](https://github.com/AdmiralSYN-ACKbar/bulkcheck).
